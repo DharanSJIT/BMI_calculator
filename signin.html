@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - FitCheck BMI Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="shortcut icon" href="calculator-solid.svg" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="auth-page">
+    <!-- Add back button at the top -->
+    <div class="back-nav">
+      <a href="index.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        Back to Calculator
+      </a>
+    </div>
+
+    <a href="/" class="logo">
+      <div class="logo-icon"></div>
+      <span class="logo-text">FitCheck</span>
+    </a>
+    
+    <div class="auth-container">
+      <h2>Sign In to FitCheck</h2>
+      <p class="auth-description">Track your BMI history and save your results</p>
+      
+      <form id="signin-form" class="auth-form">
+        <div class="input-wrapper">
+          <input type="email" id="email" class="input-field" placeholder=" " required>
+          <label for="email">Email</label>
+        </div>
+        
+        <div class="input-wrapper">
+          <input type="password" id="password" class="input-field" placeholder=" " required>
+          <label for="password">Password</label>
+        </div>
+        
+        <div class="forgot-password">
+          <a href="#">Forgot password?</a>
+        </div>
+        
+        <button type="submit" class="sign-in-btn">Sign In</button>
+        
+        <div class="divider">
+          <span>or</span>
+        </div>
+        
+        <button type="button" id="googleSignInBtn" class="google-btn">
+          <img src="icons8-google-480.png" alt="Google">
+          Sign in with Google
+        </button>
+      </form>
+      
+      <div class="auth-footer">
+        <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Firebase Auth Script -->
+  <script type="module">
+    // Import Firebase modules
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } 
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    // Your Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBCNq0TTdgyv5-PRopb1raMxNj1yMmj9gc",
+      authDomain: "bmi-calculator-88dd9.firebaseapp.com",
+      projectId: "bmi-calculator-88dd9",
+      storageBucket: "bmi-calculator-88dd9.firebasestorage.app",
+      messagingSenderId: "29033640984",
+      appId: "1:29033640984:web:250dca641e6c0195527f6d"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    // Sign in with email and password
+    document.getElementById('signin-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in 
+          window.location.href = 'index.html';
+        })
+        .catch((error) => {
+          // Handle errors
+          const errorMessage = error.message;
+          showError(errorMessage);
+        });
+    });
+
+    // Sign in with Google
+    document.getElementById('googleSignInBtn').addEventListener('click', () => {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          // Google sign in successful
+          window.location.href = 'index.html';
+        })
+        .catch((error) => {
+          // Handle errors
+          showError(error.message);
+        });
+    });
+
+    // Show error message
+    function showError(message) {
+      // Remove existing error message if any
+      const existingError = document.querySelector('.error-message');
+      if (existingError) {
+        existingError.remove();
+      }
+      
+      // Create error message element
+      const errorElement = document.createElement('div');
+      errorElement.className = 'error-message';
+      errorElement.textContent = message;
+      
+      // Insert after form
+      const form = document.getElementById('signin-form');
+      form.insertAdjacentElement('afterend', errorElement);
+    }
+  </script>
+  
+  <style>
+    /* Additional Auth Page Styles */
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #f9fafb;
+      padding: 20px;
+    }
+    
+    .auth-container {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 450px;
+      margin-top: 30px;
+    }
+    
+    .auth-container h2 {
+      color: #20B2AA;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    
+    .auth-description {
+      text-align: center;
+      color: #6B7280;
+      margin-bottom: 30px;
+    }
+    
+    .auth-form {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .input-wrapper {
+      position: relative;
+      margin-bottom: 25px;
+    }
+    
+    .input-field {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #E5E7EB;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+    
+    .input-field:focus {
+      outline: none;
+      border-color: #20B2AA;
+      box-shadow: 0 0 0 3px rgba(32, 178, 170, 0.1);
+    }
+    
+    .input-wrapper label {
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      color: #6B7280;
+      font-size: 1rem;
+      transition: all 0.2s;
+      pointer-events: none;
+      background-color: white;
+      padding: 0 5px;
+    }
+    
+    .input-field:focus + label,
+    .input-field:not(:placeholder-shown) + label {
+      transform: translateY(-24px) scale(0.85);
+      color: #20B2AA;
+    }
+    
+    .forgot-password {
+      text-align: right;
+      margin-bottom: 20px;
+    }
+    
+    .forgot-password a {
+      color: #20B2AA;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    
+    .sign-in-btn {
+      width: 100%;
+      padding: 15px;
+      background-color: #20B2AA;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: background-color 0.2s;
+    }
+    
+    .sign-in-btn:hover {
+      background-color: #1a8f89;
+    }
+    
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 20px 0;
+    }
+    
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid #E5E7EB;
+    }
+    
+    .divider span {
+      padding: 0 15px;
+      color: #6B7280;
+    }
+    
+    .google-btn {
+      width: 100%;
+      padding: 12px;
+      background: white;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      color: #374151;
+      transition: background-color 0.2s;
+    }
+    
+    .google-btn:hover {
+      background-color: #F9FAFB;
+    }
+    
+    .google-btn img {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .auth-footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #6B7280;
+    }
+    
+    .auth-footer a {
+      color: #20B2AA;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .error-message {
+      color: #EF4444;
+      text-align: center;
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #FEF2F2;
+      border-radius: 8px;
+      border: 1px solid #FCA5A5;
+    }
+    .logo {
+      margin-bottom: 20px;
+    }
+  </style>
+</body>
+</html>
