@@ -10,12 +10,13 @@
 </head>
 <body>
   <!-- Notification Container -->
-  <div id="notification" class="notification" style="display: none;">
+       <div id="notification" class="notification" style="display: none;">
     <span id="notification-message"></span>
     <button class="notification-close">&times;</button>
   </div>
+
   <div class="bmi-calculator">
-    <!-- Navigation Bar -->
+    <!-- Navbar -->
     <nav class="navbar">
       <div class="nav-container">
         <a href="/" class="logo">
@@ -34,10 +35,9 @@
         </div>
       </div>
     </nav>
-    <!-- Line below navbar -->
     <div class="nav-divider"></div>
 
-    <!-- Header Section -->
+    <!-- Header -->
     <div class="header" id="header">
       <div class="header-content">
         <h1>FitCheck BMI Calculator</h1>
@@ -48,16 +48,18 @@
         </div>
       </div>
       <div class="header-image">
-        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Fitness tracking">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=500&q=80" alt="Fitness tracking">
       </div>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
-      <!-- Calculator Section -->
+
+      <!-- Calculator -->
       <section id="calculator" class="section">
         <h2 class="section-title">Calculate Your BMI</h2>
         <div class="grid">
+
           <!-- Calculator Card -->
           <div class="card">
             <div class="card-header">
@@ -79,14 +81,8 @@
                 <div class="input-group">
                   <label>Gender</label>
                   <div class="gender-selector">
-                    <label class="gender-option">
-                      <input type="radio" name="gender" value="male" checked>
-                      <span class="gender-label"><i class="fas fa-mars"></i> Male</span>
-                    </label>
-                    <label class="gender-option">
-                      <input type="radio" name="gender" value="female">
-                      <span class="gender-label"><i class="fas fa-venus"></i> Female</span>
-                    </label>
+                    <label class="gender-option"><input type="radio" name="gender" value="male" checked> <span class="gender-label"><i class="fas fa-mars"></i> Male</span></label>
+                    <label class="gender-option"><input type="radio" name="gender" value="female"> <span class="gender-label"><i class="fas fa-venus"></i> Female</span></label>
                   </div>
                 </div>
                 <div class="input-group">
@@ -100,39 +96,17 @@
               </div>
 
               <!-- Imperial Inputs -->
-              <div id="imperial-inputs">
-                <div class="input-group">
-                  <label for="age-imperial">Age</label>
-                  <input id="age-imperial" type="number" placeholder="e.g. 30" class="input" />
-                </div>
+              <div id="imperial-inputs" style="display:none;">
+                <div class="input-group"><label for="age-imperial">Age</label><input id="age-imperial" type="number" placeholder="e.g. 30" class="input" /></div>
                 <div class="input-group">
                   <label>Gender</label>
                   <div class="gender-selector">
-                    <label class="gender-option">
-                      <input type="radio" name="gender-imperial" value="male" checked>
-                      <span class="gender-label"><i class="fas fa-mars"></i> Male</span>
-                    </label>
-                    <label class="gender-option">
-                      <input type="radio" name="gender-imperial" value="female">
-                      <span class="gender-label"><i class="fas fa-venus"></i> Female</span>
-                    </label>
+                    <label class="gender-option"><input type="radio" name="gender-imperial" value="male" checked> <span class="gender-label"><i class="fas fa-mars"></i> Male</span></label>
+                    <label class="gender-option"><input type="radio" name="gender-imperial" value="female"> <span class="gender-label"><i class="fas fa-venus"></i> Female</span></label>
                   </div>
                 </div>
-                <div class="input-group">
-                  <label for="weight-imperial">Weight (lbs)</label>
-                  <input id="weight-imperial" type="number" placeholder="e.g. 154" class="input" />
-                </div>
-                <div class="input-group">
-                  <label>Height</label>
-                  <div class="input-row">
-                    <div class="input-group">
-                      <input id="height-ft" type="number" placeholder="ft" class="input" />
-                    </div>
-                    <div class="input-group">
-                      <input id="height-in" type="number" placeholder="in" class="input" />
-                    </div>
-                  </div>
-                </div>
+                <div class="input-group"><label for="weight-imperial">Weight (lbs)</label><input id="weight-imperial" type="number" placeholder="e.g. 154" class="input" /></div>
+                <div class="input-group"><label>Height</label><div class="input-row"><input id="height-ft" type="number" placeholder="ft" class="input" /><input id="height-in" type="number" placeholder="in" class="input" /></div></div>
               </div>
             </div>
             <div class="card-footer">
@@ -155,56 +129,28 @@
                     <div class="bmi-label">BMI</div>
                   </div>
                 </div>
-
                 <div class="bmi-scale">
-                  <div class="bmi-category-row">
-                    <span>Category</span>
-                    <span id="bmi-category">-</span>
-                  </div>
-                  <div class="progress-bar">
-                    <div id="progress-value" class="progress-value"></div>
-                  </div>
-                  <div class="progress-labels">
-                    <span>0</span>
-                    <span>18.5</span>
-                    <span>25</span>
-                    <span>30</span>
-                    <span>40+</span>
-                  </div>
+                  <div class="bmi-category-row"><span>Category</span><span id="bmi-category">-</span></div>
+                  <div class="progress-bar"><div id="progress-value" class="progress-value"></div></div>
+                  <div class="progress-labels"><span>0</span><span>18.5</span><span>25</span><span>30</span><span>40+</span></div>
                 </div>
-
                 <div class="additional-metrics">
-                  <div class="metric-item">
-                    <div class="metric-label">Ideal Weight Range</div>
-                    <div id="ideal-weight" class="metric-value">-</div>
-                  </div>
-                  <div class="metric-item">
-                    <div class="metric-label">Daily Calories</div>
-                    <div id="daily-calories" class="metric-value">-</div>
-                  </div>
+                  <div class="metric-item"><div class="metric-label">Ideal Weight Range</div><div id="ideal-weight" class="metric-value">-</div></div>
+                  <div class="metric-item"><div class="metric-label">Daily Calories</div><div id="daily-calories" class="metric-value">-</div></div>
                 </div>
-
-                <div class="health-tip">
-                                    <p class="title">Health Tip:</p>
-                                    <p id="health-tip" class="content">Enter your details and click "Calculate BMI" to see your results</p>
-                                </div>
-
+                <div class="health-tip"><p class="title">Health Tip:</p><p id="health-tip" class="content">Enter your details and click "Calculate BMI" to see your results</p></div>
                 <div class="result-actions">
-                  <button id="save-result" class="button button-primary" disabled title="Sign in to save your results">
-                    Save Result
-                  </button>
+                  <button id="save-result" class="button button-primary" disabled title="Sign in to save your results">Save Result</button>
                   <button id="share-result" class="button button-outline">Share <i class="fas fa-share-alt"></i></button>
-                    
-                  </button>
                 </div>
-                
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
-      <!-- History Section -->
+      <!-- History -->
       <section id="history" class="section">
         <h2 class="section-title">BMI History</h2>
         <div id="history-section" class="card">
@@ -213,29 +159,16 @@
             <p class="card-description">Track your progress over time</p>
           </div>
           <div class="card-content">
-            <div id="history-login-prompt" class="history-prompt" style="display: none;">
+            <div id="history-login-prompt" class="history-prompt">
               <h3>BMI History</h3>
               <p>Sign in to track your BMI history</p>
               <a href="signin.html" class="auth-button">Sign in</a>
             </div>
-            <div id="history-chart-container" style="display: none;">
-              <canvas id="history-chart" height="250"></canvas>
-            </div>
-            <div id="history-table" class="table-container" style="display: none;">
+            <div id="history-chart-container" style="display:none;"><canvas id="history-chart" height="250"></canvas></div>
+            <div id="history-table" class="table-container" style="display:none;">
               <table>
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>BMI</th>
-                    <th>Weight</th>
-                    <th>Height</th>
-                    <th>Category</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody id="history-body">
-                  <!-- History rows will be added here by JavaScript -->
-                </tbody>
+                <thead><tr><th>Date</th><th>BMI</th><th>Weight</th><th>Height</th><th>Category</th></tr></thead>
+                <tbody id="history-body"></tbody>
               </table>
             </div>
           </div>
@@ -381,7 +314,7 @@
   </div>
   
   <!-- Firebase Auth Script -->
-  <script type="module">
+  <!-- <script type="module">
     // Import Firebase modules
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } 
@@ -534,11 +467,187 @@
     // Make the function available globally
     window.loadUserHistory = loadUserHistory;
   </script>
+   -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { getFirestore, collection, addDoc, query, where, getDocs, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  // Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyBCNq0TTdgyv5-PRopb1raMxNj1yMmj9gc",
+    authDomain: "bmi-calculator-88dd9.firebaseapp.com",
+    projectId: "bmi-calculator-88dd9",
+    storageBucket: "bmi-calculator-88dd9.appspot.com",
+    messagingSenderId: "29033640984",
+    appId: "1:29033640984:web:250dca641e6c0195527f6d"
+  };
+
+  // Init Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const provider = new GoogleAuthProvider();
+
+  // Show notifications (green = success, red = error)
+  function showNotification(msg, type = "success") {
+    const n = document.getElementById("notification");
+    document.getElementById("notification-message").textContent = msg;
+    n.style.backgroundColor = (type === "error" ? "#EF4444" : "#16A34A");
+    n.style.display = "flex";
+    setTimeout(() => n.style.display = "none", 3000);
+  }
+  document.querySelector(".notification-close").onclick = () =>
+    document.getElementById("notification").style.display = "none";
+
+  // Handle Auth State
+  onAuthStateChanged(auth, (user) => {
+    const signInBtn = document.getElementById("signInBtn");
+    const signOutBtn = document.getElementById("signOutBtn");
+    const saveBtn = document.getElementById("save-result");
+    const historyTable = document.getElementById("history-table");
+    const historyChart = document.getElementById("history-chart-container");
+    const historyPrompt = document.getElementById("history-login-prompt");
+
+    if (user) {
+      // Signed in
+      showNotification("Signed in successfully!", "success");
+      signInBtn.style.display = "none";
+      signOutBtn.style.display = "block";
+      saveBtn.disabled = false;
+      historyTable.style.display = "block";
+      historyChart.style.display = "block";
+      historyPrompt.style.display = "none";
+      loadUserHistory(user.uid);
+    } else {
+      // Signed out
+      signInBtn.style.display = "block";
+      signOutBtn.style.display = "none";
+      saveBtn.disabled = true;
+      historyTable.style.display = "none";
+      historyChart.style.display = "none";
+      historyPrompt.style.display = "block";
+    }
+  });
+
+  // Sign Out
+  document.getElementById("signOutBtn").onclick = () => {
+    signOut(auth).then(() => {
+      showNotification("Signed out successfully!", "error");
+      setTimeout(() => window.location.href = "index.html", 2000);
+    }).catch((err) => console.error("Sign out error:", err));
+  };
+
+  // Save BMI Result
+  async function saveBMIResult(bmi, weight, height) {
+    const user = auth.currentUser;
+    if (!user) return showNotification("Sign in to save", "error");
+
+    const saveBtn = document.getElementById("save-result");
+    const originalText = saveBtn.textContent;
+    saveBtn.textContent = "Saving...";
+    saveBtn.disabled = true;
+
+    try {
+      await addDoc(collection(db, "bmiHistory"), {
+        userId: user.uid,
+        bmi,
+        weight,
+        height,
+        date: new Date()
+      });
+      showNotification("Result saved!", "success");
+      loadUserHistory(user.uid);
+    } catch (e) {
+      console.error("Error saving:", e);
+      showNotification("Error saving result", "error");
+    } finally {
+      saveBtn.textContent = originalText;
+      saveBtn.disabled = false;
+    }
+  }
+
+  // Load History
+  async function loadUserHistory(uid) {
+    const q = query(
+      collection(db, "bmiHistory"),
+      where("userId", "==", uid),
+      orderBy("date", "desc"),
+      limit(10)
+    );
+    const snap = await getDocs(q);
+    const data = [];
+    snap.forEach(d => data.push({ ...d.data(), id: d.id }));
+    renderHistory(data);
+    renderHistoryChart(data);
+  }
+
+  // Render History Table
+  function renderHistory(data) {
+    const body = document.getElementById("history-body");
+    body.innerHTML = "";
+    data.forEach(d => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${d.date.toDate().toLocaleDateString()}</td>
+        <td>${d.bmi}</td>
+        <td>${d.weight}</td>
+        <td>${d.height}</td>`;
+      body.appendChild(tr);
+    });
+  }
+
+  // Render Chart
+  let chart = null;
+  function renderHistoryChart(data) {
+    const ctx = document.getElementById("history-chart");
+    const labels = data.map(d => d.date.toDate().toLocaleDateString()).reverse();
+    const values = data.map(d => d.bmi).reverse();
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels,
+        datasets: [{ label: "BMI", data: values, borderColor: "blue" }]
+      }
+    });
+  }
+
+  // Calculate BMI
+  document.getElementById("calculate-btn").onclick = () => {
+    const w = parseFloat(document.getElementById("weight").value);
+    const h = parseFloat(document.getElementById("height").value);
+    if (!w || !h) return showNotification("Enter values", "error");
+    const bmi = (w / ((h / 100) ** 2)).toFixed(2);
+    document.getElementById("bmi-result").textContent = bmi;
+    document.getElementById("bmi-category").textContent =
+      (bmi < 18.5 ? "Underweight" : bmi < 25 ? "Normal" : bmi < 30 ? "Overweight" : "Obese");
+    document.getElementById("save-result").onclick = () => saveBMIResult(bmi, w, h);
+  };
+
+  // Reset
+  document.getElementById("reset-btn").onclick = () => {
+    document.getElementById("weight").value = "";
+    document.getElementById("height").value = "";
+    document.getElementById("bmi-result").textContent = "0";
+    document.getElementById("bmi-category").textContent = "-";
+  };
+
+  // Footer Year
+  document.getElementById("current-year").textContent = new Date().getFullYear();
+</script>
+
+
+  
+
   
   <!-- Chart.js for BMI history chart -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
   <!-- Main Script -->
   <script src="script.js"></script>
+  <script src="scripts.js"></script>
 </body>
 </html>

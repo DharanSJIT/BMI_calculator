@@ -561,13 +561,13 @@ td:nth-child(1) { /* Date column */
 }
 
 td:nth-child(2) { /* BMI column */
-  text-align: center;
+  /* text-align: center; */
   font-weight: 600;
 }
 
 td:nth-child(3), /* Weight column */
 td:nth-child(4) { /* Height column */
-  text-align: center;
+  /* text-align: center; */
 }
 
 /* Category badge styling */
